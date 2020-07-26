@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div>
+            <h1>Modificar insumo</h1>
+            <h3 aligne="right"><a href="/funciones/listaInsumo">volver</a></h3>
+        </div>
+    </div>
+    <div>
+        <div>
+            <form action="/api/insumos/put/<%=insumo._id%>" name="formularia" method="post">
+                <label><input type="text" name="nombre" id="nombre" value="<%=insumo.nombre%>"></label>
+                <label><input type="text" name="cantidad" id="cantidad" value="<%=insumo.cantidad%>"></label>
+                <label><input type="number" name="precio" id="precio" value="<%=insumo.precio%>" ></label>
+                <label><button class="btn btn-primary">enviar</button></label>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

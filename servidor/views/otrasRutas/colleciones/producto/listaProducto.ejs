@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <div>
+        <h1>Visualizar Productos</h1>
+        <h3 aligne="right"><a href="/funciones/menuColeccion">volver</a></h3>
+    </div>
+    <Div>
+        <form action="">
+        </form>
+    </Div>
+    <div class="listado">
+        <div id="tablacon">
+            <center>
+                <table class="table-responsive table-striped">
+                    <thead>
+                        <tr>
+                            <th>nombre</th>
+                            <th>tipo</th>
+                            <th>|cantidad|</th>
+                            <th>|retorno?|</th>
+                            <th>|insumo|</th>
+                            <th>|cantidad insumo|</th>
+                            <th>|retornable|</th>
+                            <th>|cantidad|</th>
+                            <th>precio</th>
+                            <th>precio x envío</th>
+                            <th> eliminar</th>
+                            <th>modificar</th>
+                        </tr>
+                    </thead>
+                    <tbody><!-- ESTO VA A CAMBIAR  -->
+                        <% for (i=0 ; i < producto.length ; i++) {%>
+                            <% var filas=1 %>
+                            <% if(producto[i].cantidadIns.length>1){%>
+                                <%filas=producto[i].cantidadIns.length; %>
+                                <%} %>
+                            <tr>
+                                <td rowspan=<%= "filas" %>><%= producto[i].nombre %></td>
+                                <td rowspan=<%= "filas" %>><%= producto[i].tipo %></td>
+                                <td rowspan=<%= "filas" %>><%= producto[i].cantidadProd %></td>
+                                <td rowspan=<%= "filas" %>><%= producto[i].retornable %></td>
+<!------------------------------------------PARA LISTAR INSUMOS------------------------------------------------------>                                
+                                <% if(filas>1) {%>
+                                    <td><table>
+                                        <td><%= producto[i].nombreIns[0] %></td>
+                                        <tr>
+                                    <% for (j=0 ; j < producto[i].nombreIns.length ; j++) {%>
+                                        <td ><%= producto[i].nombreIns[j+1] %></td>
+                                        </tr>
+                                        <% if (j+1< filas) {%>
+                                           <tr> 
+                                        <%} %>
+                                    <%} %>
+                                    </table></td>
+                                    <td><table>
+                                        <td><%= producto[i].cantidadIns[0] %></td>
+                                        <tr>
+                                    <% for (j=0 ; j < producto[i].cantidadIns.length ; j++) {%>
+                                        <td ><%= producto[i].cantidadIns[j+1] %></td>
+                                        </tr>
+                                        <% if (j+1< filas) {%>
+                                           <tr> 
+                                        <%} %>
+                                    <%} %>
+                                    </table></td>
+                                <%} else {%>
+
+                                    <td><%= producto[i].nombreIns[0] %></td>
+                                    <td><%= producto[i].cantidadIns[0] %></td>
+                                <%} %>
+<!---------------------------------------FIN PARA LISTAR INSUMOS------------------------------------------------------> 
+<!------------------------------------------PARA LISTAR RETORN------------------------------------------------------>
+                                <% if(filas>1) {%>
+                                    <td><table>
+                                        <td><%= producto[i].insRetorn[0] %></td>
+                                        <tr>
+                                    <% for (j=0 ; j < producto[i].insRetorn.length ; j++) {%>
+                                        <td ><%= producto[i].insRetorn[j+1] %></td>
+                                        </tr>
+                                        <% if (j+1< filas) {%>
+                                        <tr> 
+                                        <%} %>
+                                    <%} %>
+                                    </table></td>
+                                    <td><table>
+                                        <td><%= producto[i].cantRetorn[0] %></td>
+                                        <tr>
+                                    <% for (j=0 ; j < producto[i].cantRetorn.length ; j++) {%>
+                                        <td ><%= producto[i].cantRetorn[j+1] %></td>
+                                        </tr>
+                                        <% if (j+1< filas) {%>
+                                        <tr> 
+                                        <%} %>
+                                    <%} %>
+                                    </table></td>
+                                <%} else {%>
+
+                                    <td><%= producto[i].insRetorn[0] %></td>
+                                    <td><%= producto[i].cantRetorn[0] %></td>
+                                <%} %>
+<!----------------------------------------FIN PARA LISTAR RETORN------------------------------------------------------>                           
+                                <td rowspan=<%= "filas" %>><%= producto[i].precio %></td>
+                                <td rowspan=<%= "filas" %>><%= producto[i].comis %></td>
+                                <td rowspan=<%= "filas" %>><a href="/api/productos/delete/<%=producto[i]._id%>">eliminar</a></td>
+                                <td rowspan=<%= "filas" %>><a href="/funciones/modifProducto/<%=producto[i]._id%>">modificar</a></td>
+                            </tr>
+                        <%} %>
+                        
+                    </tbody>
+                </table>
+            </center>
+        </div>
+    </div>
+</body>
+</html>

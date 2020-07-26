@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <div>
+        <h1>Conteo de inventario</h1>
+        <h3 aligne="right"><a href="/funciones">volver</a></h3>
+    </div>
+    <div>
+        <form action="/api/inventario/prod/<%=producto.length%>" name="formularia" method="post">
+            <table class="table-responsive table-striped mx-2">
+                <thead>
+                    <tr>
+                        <th>producto</th>
+                        <th>cantidad inv</th>
+                        <th>cantidad real</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(i=0; i< producto.length; i++) {%>
+                    <tr>
+                        <td><%=producto[i].nombre%></td>
+                        <td><%=producto[i].cantidadProd%></td>
+                        <td><input type="number" name="cantidadProd" value="<%=producto[i].cantidadProd%>" class="form-control m-1"></td>
+                    </tr>
+                    <%} %>
+                </tbody>
+                <Tfoot>
+                    <tr>
+                        <td colspan="3" align="center">
+                            <button class="btn btn-primary">enviar</button>
+                        </td>
+                    </tr>
+                </Tfoot>
+            </table>
+            
+        </form>
+    </div>
+    <div>
+        <form action="/api/inventario/ins/<%=insumo.length%>" name="formul" method="post">
+            <table class="table-responsive table-striped mx-2">
+                <thead>
+                    <tr>
+                        <th>insumo</th>
+                        <th>cantidad inv</th>
+                        <th>cantidad real</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(i=0; i< insumo.length; i++) {%>
+                    <tr>
+                        <td><%=insumo[i].nombre%></td>
+                        <td><%=insumo[i].cantidad%></td>
+                        <td><input type="number" name="cantidadIns" value="<%=insumo[i].cantidad%>" class="form-control m-1"></td>
+                    </tr>
+                    <%} %>
+                    <Tfoot>
+                        <tr>
+                            <td colspan="3" align="center">
+                                <button class="btn btn-primary">enviar</button>
+                            </td>
+                        </tr>
+                    </Tfoot>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>

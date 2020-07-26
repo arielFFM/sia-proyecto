@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Cliente</title>
+</head>
+<body>
+    <div>
+        <div>
+            <h1>Modificar Clientes</h1>
+            <h3 aligne="right"><a href="/funciones/listaCliente">volver</a></h3>
+        </div>
+    </div>
+    <div>
+        <div>
+            <form action="/api/clientes/put/<%=cliente._id %>" name="formularia" method="POST">
+                <label><input type="text" name="nombre" id="nombre" value="<%=cliente.nombre %>"></label><br>
+                <label><input type="text" name="comuna" id="comuna" value="<%=cliente.comuna %>"></label><br>
+                <label><input type="text" name="calle" id="calle" value="<%=cliente.calle %>"></label><br>
+                <label><input type="number" name="nCasa" id="nCasa" value="<%=cliente.nCasa %>"></label><br>
+                <label><input type="date" name="fechaNac" id="fechaNac" value="<%=cliente.fechaNac %>"></label><br>
+                <label><input type="number" name="telefono" id="telefono" value="<%=cliente.telefono %>" ></label><br>
+                <label><input type="number" name="rut" id="rut" value="<%=cliente.rut %>"></label><br>
+                <label><input type="number" name="bidones" id="bidones" value="<%=cliente.bidones %>"></label><br>
+                <label><input type="email" name="correo" id="correo" value="<%=cliente.correo %>"></label><br>
+                <label><select name="tipoCliente" id="tipoCliente">
+                    <option value="domiciliario">domiciliario</option>
+                    <option value="empresa">empresa</option>
+                </select></label><br>
+                <label><button class="btn btn-primary">enviar</button></label>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

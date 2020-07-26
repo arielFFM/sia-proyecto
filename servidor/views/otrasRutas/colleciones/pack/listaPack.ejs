@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <div>
+        <h1>Visualizar Pack</h1>
+        <h3 aligne="right"><a href="/funciones/menuColeccion">volver</a></h3>
+    </div>
+
+    <div class="listado">
+        <div id="tablacon">
+            <center>
+                <table class="table-responsive table-striped">
+                    <thead>
+                        <tr>
+                            <th>nombre pack</th>
+                            <th>precio</th>
+                            <th>producto</th>
+                            <th>cantidad</th>
+                            <th> eliminar</th>
+                            <th>modificar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (i=0;i < pack.length;i++) {%>
+                            <% var filas=1 %>
+                            <% if(pack[i].producto.length>1){%>
+                                <%filas=pack[i].producto.length; %>
+                                <%} %>
+                            <tr>
+                                <td><%= pack[i].nombre %></td>
+                                <td><%= pack[i].precio %></td>
+<!------------------------------------------PARA LISTAR PRODUCTOS---------------------------------------------------->                        
+                                <% if(filas>1) {%>
+                                    <td><table>
+                                        <td><%= pack[i].producto[0] %></td>
+                                        <tr>
+                                    <% for (j=0 ; j < pack[i].producto.length ; j++) {%>
+                                        <td ><%= pack[i].producto[j+1] %></td>
+                                        </tr>
+                                        <% if (j+1< filas) {%>
+                                        <tr> 
+                                        <%} %>
+                                    <%} %>
+                                    </table></td>
+                                    <td><table>
+                                        <td><%= pack[i].cantidad[0] %></td>
+                                        <tr>
+                                    <% for (j=0 ; j < pack[i].cantidad.length ; j++) {%>
+                                        <td ><%= pack[i].cantidad[j+1] %></td>
+                                        </tr>
+                                        <% if (j+1< filas) {%>
+                                        <tr> 
+                                        <%} %>
+                                    <%} %>
+                                    </table></td>
+                                <%} else {%>
+
+                                    <td><%= pack[i].producto %></td>
+                                    <td><%= pack[i].cantidad %></td>
+                                        <%} %>
+<!---------------------------------------FIN PARA LISTAR PRODUCTOS--------------------------------------------------->                                
+                                <td><a href="/api/pack/delete/<%=pack[i]._id%>"> eliminar</a></td>
+                                <td><a href="/funciones/modifPack/<%=pack[i]._id%>"> modificar</a></td>
+                            </tr>
+                        <%} %>
+                        
+                    </tbody>
+                </table>
+            </center>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Producto</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <div>
+        <div>
+            <h1>Crear Producto</h1>
+            <h3 aligne="right"><a href="/funciones/menuColeccion">volver</a></h3>
+        </div>
+    </div>
+    <div>
+            <form action="/api/productos" name="formularia" id="formularia" method="post">
+            <div class="form-group ml-2">
+                <label for="nombre">Nombre Prod</label>
+                <input type="text" name="nombre" id="nombre" placeholder="nombre producto" class="form-control w-50">
+            </div>
+            <div class="form-group ml-2">
+                <label for="tipo">Producido</label>
+                <select name="tipo" id="tipo" class="form-control w-50">
+                    <option  value="false">false</option>
+                    <option value="true">true</option>
+                </select>
+            </div>
+            <div class="form-group ml-2">
+                <label for="cantidadProd">Cantidad</label>
+                <input type="number" name="cantidadProd" id="cantidadProd" placeholder="cantidad producto" class="form-control w-50">
+            </div>
+            <div class="form-group ml-2">
+                <label for="precio">Precio</label>
+                <input type="number" name="precio" id="precio" placeholder="precio" class="form-control w-50">
+            </div>
+            <div class="form-group ml-2">
+                <label for="comis">precio envio</label>
+                <input type="number" name="comis" id="comis" placeholder="precio por envío" class="form-control w-50">
+            </div>
+            <div class="form-group ml-2">
+                <label for="retornable">Retorna algo</label>
+                <select name="retornable" id="retornable" class="form-control w-50"> 
+                    <option value="false">false</option>
+                    <option value="true">true</option>
+                </select>
+            </div>
+            <div class="form-group ml-2">
+                <label><button class="btn btn-primary">enviar</button></label>
+            </div>
+            <hr>
+            
+            <div id="agregInsumos">   <!--    ESTO VA A CAMBIAR-->
+                <div class="form-group ml-2">
+                    <label for="nombreIns">Insumo</label>
+                    <select name="nombreIns" id="nombreIns" class="form-control w-50" disabled>
+                        <% for(i=0;i < nombre.length;i++){%>
+                            <option value="<%= nombre[i].nombre%>"><%= nombre[i].nombre%></option>
+                        <%} %>
+                    </select>
+                </div>
+                <div class="form-group ml-2">
+                    <label for="cantidadIns">Cantidad</label>
+                    <input type="number" name="cantidadIns" id="cantidadIns" placeholder="cantidad insumo" class="form-control w-50" disabled>
+                </div>
+                <div class="form-group ml-2">
+                    <input type="button" value="mas insumo" id="btn-ins" class="form-control w-50" disabled>
+                </div>
+            </div>
+            <hr>    
+            <div id="agregRetorn">  
+                <div class="form-group ml-2"> 
+                    <label for="nombreRetorn">Retorna</label>
+                    <select name="insRetorn" id="nombreRetorn" class="form-control w-50" disabled>
+                        <% for(i=0;i < nombre.length;i++){%>
+                            <option value="<%= nombre[i].nombre%>"><%= nombre[i].nombre%></option>
+                        <%} %>
+                    </select>
+                </div>
+                <div class="form-group ml-2">
+                    <label for="cantRetorn">Cantidad</label>
+                    <input type="number" name="cantRetorn" id="cantRetorn" placeholder="cantidad" class="form-control w-50" disabled>
+                </div>
+                <div class="form-group ml-2">
+                    <input type="button" value="insumo retorn" id="btn-retorn" class="form-control w-50" disabled>
+                </div>
+            </div>
+            </div>
+            </form>
+    </div>
+    <script src="../../../js/bloquearProd.js" type="text/javascript" language="javascript"></script>
+    <script src="../../../js/formProd.js" type="text/javascript" language="javascript"></script>
+    <script src="../../../js/formRetorn.js" type="text/javascript" language="javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>

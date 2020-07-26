@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div>
+            <h1>Modificar Vendedor</h1>
+            <h3 aligne="right"><a href="/funciones/listaVendedor">volver</a></h3>
+        </div>
+    </div>
+    <div>
+        <div>
+            <form action="/api/vendedores/put/<%=vendedor._id%>" name="formularia" method="post">
+                <label><input type="text" name="nombre" id="nombre" value="<%=vendedor.nombre%>"></label>
+                <label><input type="text" name="user" id="user" value="<%=vendedor.user%>"></label>
+                <label><input type="text" name="comuna" id="comuna" value="<%=vendedor.comuna%>"></label>
+                <label><input type="text" name="calle" id="calle" value="<%=vendedor.calle%>"></label>
+                <label><input type="number" name="nCasa" id="nCasa" value="<%=vendedor.nCasa%>"></label>
+                <label><input type="number" name="telefono" id="telefono" value="<%=vendedor.telefono%>" ></label>
+                <label><input type="number" name="rut" id="rut" value="<%=vendedor.rut%>"></label>
+                <label><button class="btn btn-primary">enviar</button></label>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

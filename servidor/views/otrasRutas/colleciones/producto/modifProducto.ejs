@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Producto</title>
+</head>
+<body>
+    <div>
+        <div>
+            <h1>Modificar producto</h1>
+            <h3 aligne="right"><a href="/funciones/listaProducto">volver</a></h3>
+        </div>
+    </div>
+    <div>
+            <form action="/api/productos/put/<%=producto._id%>" name="formularia" method="post">
+            <div>
+                <label><input type="text" name="nombre" id="nombre" value="<%=producto.nombre%>"></label><br>
+                <label>producido?<select name="tipo" id="tipo">
+                    <option value="true">true</option>
+                    <option value="false">false</option>
+                </select></label><br>
+                <label><input type="number" name="cantidadProd" id="cantidadProd" value="<%=producto.cantidadProd%>"></label><br>
+                <label><input type="number" name="precio" id="precio" value="<%=producto.precio%>"></label><br>
+                <label><input type="number" name="comis" id="comis" value="<%=producto.comis%>"></label><br>
+                <label>retornable?<select name="retornable" id="retornable">
+                    <option value="true">true</option>
+                    <option value="false">false</option>
+                </select></label><br>
+                <label><button class="btn btn-primary">enviar</button></label><br>
+            </div>
+            <br>
+            <div id="agregInsumos">   <!--    ESTO VA A CAMBIAR-->
+            <% for (i=0 ; i < producto.cantidadIns.length ; i++) {%>
+                <label> <select name="nombreIns" id="nombreIns">
+                    <% for(j=0;j < insumo.length;j++){%>
+                        <option value="<%= insumo[j].nombre%>"><%= insumo[j].nombre%></option>
+                        <%} %>
+                </select></label>
+                <label><input type="number" name="cantidadIns" id="cantidadIns" value="<%=producto.cantidadIns[i]%>"></label>
+            <% if(i==0){%>
+                <label><input type="button" value="mas insumo" id="btn-ins"></label>
+                <%}%>
+                <br>
+                <%} %>
+            </div>
+            <div id="agregRetorn">      
+                <% for (i=0 ; i < producto.cantRetorn.length ; i++) {%>
+                    <label> <select name="nombreIns" id="nombreRetorn">
+                        <% for(j=0;j < insumo.length;j++){%>
+                            <option value="<%= insumo[j].nombre%>"><%= insumo[j].nombre%></option>
+                            <%} %>
+                    </select></label>
+                    <label><input type="number" name="cantRetorn" id="cantRetorn" value="<%=producto.cantRetorn[i]%>"></label>
+                <% if(i==0){%>
+                    <label><input type="button" value="insumo" id="btn-retorn"></label>
+                    <%}%>
+                    <br>
+                    <%} %>
+                </div>
+            </form>
+    </div>
+    <script src="../../../js/formProd.js" type="text/javascript" language="javascript"></script>
+    <script src="../../../js/formRetorn.js" type="text/javascript" language="javascript"></script>
+</body>
+</html>
