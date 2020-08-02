@@ -15,10 +15,19 @@
     <div>
         <div>
             <form action="/api/insumos/put/<%=insumo._id%>" name="formularia" method="post">
-                <label><input type="text" name="nombre" id="nombre" value="<%=insumo.nombre%>"></label>
-                <label><input type="text" name="cantidad" id="cantidad" value="<%=insumo.cantidad%>"></label>
-                <label><input type="number" name="precio" id="precio" value="<%=insumo.precio%>" ></label>
-                <label><button class="btn btn-primary">enviar</button></label>
+                <div class="form-group ml-2">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre" value="<%=insumo.nombre%>" class="form-control w-50" required>
+                </div>
+                <div class="form-group ml-2">
+                    <label for="cantidad">Cantidad</label>
+                    <input type="number" name="cantidad" id="cantidad" value="<%=insumo.cantidad%>" class="form-control w-50" required>
+                </div>
+                <div class="form-group ml-2">
+                    <label for="precio">Precio</label>
+                    <input type="number" name="precio" id="precio" value="<%=insumo.precio%>" class="form-control w-50" required >
+                </div>
+                <button class="btn btn-primary ml-2">enviar</button>
             </form>
         </div>
     </div>

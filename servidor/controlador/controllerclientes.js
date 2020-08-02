@@ -11,7 +11,11 @@ clienCtrl.getClientes= async (req,res)=>{
 clienCtrl.createCliente= async (req, res) =>{
     const nCliente=new cliente(req.body);
     await nCliente.save();
-    res.redirect('/funciones/listaCliente');
+    if (req.user.tipo=="ADMIN"){
+        res.redirect('/funciones/listaPedido')
+    }else{
+        res.redirect('/vendedor/pedNoEntregados')
+    }
 }
 clienCtrl.getCliente= async (req,res)=>{
     const bCliente= await cliente.findById(req.params.id);

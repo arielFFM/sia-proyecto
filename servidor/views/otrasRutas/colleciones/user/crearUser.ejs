@@ -18,7 +18,7 @@
             <form action="/api/User" name="formularia" method="post">
                 <div class="form-group ml-2">
                     <label for="username">usuario</label>
-                    <input list="user" name="username" id="username" placeholder="nombre usuario" autocomplete="off" class="form-control w-50">
+                    <input list="user" name="username" id="username" placeholder="nombre usuario" autocomplete="off" class="form-control w-50" required>
                         <datalist id="user">
                             <% for(i=0;i < vend.length; i++){%>
                                 <option value="<%=vend[i].user%>"></option>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-group ml-2">
                     <label for="password">password</label>
-                    <input type="password" name="password" id="password" placeholder="password" class="form-control w-50">
+                    <input type="password" name="password" id="password" placeholder="password" class="form-control w-50" required>
                 </div>
                 <div class="form-group ml-2">
                     <label for="tipo">tipo</label> 

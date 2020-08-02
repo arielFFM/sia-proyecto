@@ -15,48 +15,76 @@
     <div>
             <form action="/api/productos/put/<%=producto._id%>" name="formularia" method="post">
             <div>
-                <label><input type="text" name="nombre" id="nombre" value="<%=producto.nombre%>"></label><br>
-                <label>producido?<select name="tipo" id="tipo">
-                    <option value="true">true</option>
-                    <option value="false">false</option>
-                </select></label><br>
-                <label><input type="number" name="cantidadProd" id="cantidadProd" value="<%=producto.cantidadProd%>"></label><br>
-                <label><input type="number" name="precio" id="precio" value="<%=producto.precio%>"></label><br>
-                <label><input type="number" name="comis" id="comis" value="<%=producto.comis%>"></label><br>
-                <label>retornable?<select name="retornable" id="retornable">
-                    <option value="true">true</option>
-                    <option value="false">false</option>
-                </select></label><br>
-                <label><button class="btn btn-primary">enviar</button></label><br>
-            </div>
-            <br>
-            <div id="agregInsumos">   <!--    ESTO VA A CAMBIAR-->
-            <% for (i=0 ; i < producto.cantidadIns.length ; i++) {%>
-                <label> <select name="nombreIns" id="nombreIns">
-                    <% for(j=0;j < insumo.length;j++){%>
-                        <option value="<%= insumo[j].nombre%>"><%= insumo[j].nombre%></option>
-                        <%} %>
-                </select></label>
-                <label><input type="number" name="cantidadIns" id="cantidadIns" value="<%=producto.cantidadIns[i]%>"></label>
-            <% if(i==0){%>
-                <label><input type="button" value="mas insumo" id="btn-ins"></label>
-                <%}%>
-                <br>
-                <%} %>
-            </div>
-            <div id="agregRetorn">      
-                <% for (i=0 ; i < producto.cantRetorn.length ; i++) {%>
-                    <label> <select name="nombreIns" id="nombreRetorn">
-                        <% for(j=0;j < insumo.length;j++){%>
-                            <option value="<%= insumo[j].nombre%>"><%= insumo[j].nombre%></option>
+                <div class="form-group ml-2">
+                    <label for="nombre">Nombre Prod</label>
+                    <input type="text" name="nombre" id="nombre" value="<%=producto.nombre%>" class="form-control w-50" required>
+                </div>
+                <div class="form-group ml-2">
+                    <label for="tipo">Producido</label>
+                    <select name="tipo" id="tipo" class="form-control w-50">
+                        <option  value="false">false</option>
+                        <option value="true">true</option>
+                    </select>
+                </div>
+                <div class="form-group ml-2">
+                    <label for="cantidadProd">Cantidad</label>
+                    <input type="number" name="cantidadProd" id="cantidadProd" value="<%=producto.cantidadProd%>" class="form-control w-50" required>
+                </div>
+                <div class="form-group ml-2">
+                    <label for="precio">Precio</label>
+                    <input type="number" name="precio" id="precio" value="<%=producto.precio%>" class="form-control w-50" required>
+                </div>
+                <div class="form-group ml-2">
+                    <label for="comis">precio envio</label>
+                    <input type="number" name="comis" id="comis" value="<%=producto.comis%>" class="form-control w-50" required>
+                </div>
+                <div class="form-group ml-2">
+                    <label for="retornable">Retorna algo</label>
+                    <select name="retornable" id="retornable" class="form-control w-50"> 
+                        <option value="false">false</option>
+                        <option value="true">true</option>
+                    </select>
+                </div>
+                <div class="form-group ml-2">
+                    <label><button class="btn btn-primary">enviar</button></label>
+                </div>
+                <hr>
+                
+                <div id="agregInsumos">   <!--    ESTO VA A CAMBIAR-->
+                    <div class="form-group ml-2">
+                        <label for="nombreIns">Insumo</label>
+                        <select name="nombreIns" id="nombreIns" class="form-control w-50" disabled>
+                            <% for(i=0;i < nombre.length;i++){%>
+                                <option value="<%= nombre[i].nombre%>"><%= nombre[i].nombre%></option>
                             <%} %>
-                    </select></label>
-                    <label><input type="number" name="cantRetorn" id="cantRetorn" value="<%=producto.cantRetorn[i]%>"></label>
-                <% if(i==0){%>
-                    <label><input type="button" value="insumo" id="btn-retorn"></label>
-                    <%}%>
-                    <br>
-                    <%} %>
+                        </select>
+                    </div>
+                    <div class="form-group ml-2">
+                        <label for="cantidadIns">Cantidad</label>
+                        <input type="number" name="cantidadIns" id="cantidadIns" placeholder="cant ins" class="form-control w-50" disabled>
+                    </div>
+                    <div class="form-group ml-2">
+                        <input type="button" value="mas insumo" id="btn-ins" class="form-control w-50" disabled>
+                    </div>
+                </div>
+                <hr>    
+                <div id="agregRetorn">  
+                    <div class="form-group ml-2"> 
+                        <label for="nombreRetorn">Retorna</label>
+                        <select name="insRetorn" id="nombreRetorn" class="form-control w-50" disabled>
+                            <% for(i=0;i < nombre.length;i++){%>
+                                <option value="<%= nombre[i].nombre%>"><%= nombre[i].nombre%></option>
+                            <%} %>
+                        </select>
+                    </div>
+                    <div class="form-group ml-2">
+                        <label for="cantRetorn">Cantidad</label>
+                        <input type="number" name="cantRetorn" id="cantRetorn" value="cant retornable" class="form-control w-50" disabled>
+                    </div>
+                    <div class="form-group ml-2">
+                        <input type="button" value="insumo retorn" id="btn-retorn" class="form-control w-50" disabled>
+                    </div>
+                </div>
                 </div>
             </form>
     </div>

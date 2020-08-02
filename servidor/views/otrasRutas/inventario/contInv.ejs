@@ -26,7 +26,7 @@
                     <tr>
                         <td><%=producto[i].nombre%></td>
                         <td><%=producto[i].cantidadProd%></td>
-                        <td><input type="number" name="cantidadProd" value="<%=producto[i].cantidadProd%>" class="form-control m-1"></td>
+                        <td><input type="number" name="cantidadProd" value="<%=producto[i].cantidadProd%>" class="form-control m-1" required></td>
                     </tr>
                     <%} %>
                 </tbody>
@@ -56,7 +56,7 @@
                     <tr>
                         <td><%=insumo[i].nombre%></td>
                         <td><%=insumo[i].cantidad%></td>
-                        <td><input type="number" name="cantidadIns" value="<%=insumo[i].cantidad%>" class="form-control m-1"></td>
+                        <td><input type="number" name="cantidadIns" value="<%=insumo[i].cantidad%>" class="form-control m-1" required></td>
                     </tr>
                     <%} %>
                     <Tfoot>

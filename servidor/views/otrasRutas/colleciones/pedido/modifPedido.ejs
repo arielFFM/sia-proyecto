@@ -15,46 +15,80 @@
     <div>
         <center>
         <form action="/api/pedidos/put/<%=pedido._id%>" name="formularia" method="post">
-            <label><select name="vendedor" id="vendedor">
-                <% for(i=0;i < vendedor.length;i++){%>
-                    <option value="<%=vendedor[i].user%>"> <%=vendedor[i].user%></option>
-                    <%} %>
-                    <option value="LOCAL">LOCAL</option>
-            </select></label><br>
-            <label><input type="clienteLis" name="cliente" id="cliente" value="<%=pedido.cliente%>" autocomplete="off">
-                <datalist id="clienteLis">
-                    <% for(i=0;i < cliente.length;i++){%>
-                    <option value="<%=cliente[i].nombre%>"></option>
-                    <%} %>
-                </datalist></label><br>
-                <label><input type="text" name="comuna" id="comuna" value="<%=pedido.comuna%>" ></label><br>
-            <label><input type="text" name="calle" id="calle" value="<%=pedido.calle>" ></label><br>
-            <label><input type="text" name="nCasa" id="nCasa" value="<%=pedido.nCasa%>" ></label><br>
-                <label><select name="estado" id="estado">
+            <div class="form-group ml-2">
+                <label for="vendedor">Vendedor</label>
+                <select name="vendedor" id="vendedor" class="form-control w-50">
+                    <% for(i=0;i < vendedor.length;i++){%>
+                        <option value="<%=vendedor[i].user%>"> <%=vendedor[i].user%></option>
+                        <%} %>
+                        <option value="LOCAL">LOCAL</option>
+                </select>
+            </div>
+            <div class="form-group ml-2">
+                <label for="cliente">Cliente</label>
+                <input list="clienteLis" name="cliente" id="cliente" autocomplete="off" class="form-control w-50" value="<%=pedido.cliente%>">
+                    <datalist id="clienteLis">
+                        <% for(i=0;i < cliente.length;i++){%>
+                        <option value="<%=cliente[i].nombre%>"></option>
+                        <%} %>
+                    </datalist>
+            </div>
+            <div class="form-group ml-2">
+                <label for="comuna">Comuna</label>
+                <input type="text" name="comuna" id="comuna" value="<%=pedido.comuna%>" class="form-control w-50">
+            </div>
+            <div class="form-group ml-2">
+                <label for="calle">Calle</label>    
+                <input type="text" name="calle" id="calle" value="<%=pedido.calle%>" class="form-control w-50">
+            </div>
+            <div class="form-group ml-2">
+                <label for="nCasa">N° Casa</label>
+                <input type="text" name="nCasa" id="nCasa" value="<%=pedido.nCasa%>" class="form-control w-50">
+            </div>
+            
+            <div class="form-group ml-2">
+                <label for="estado">Estado Ped</label>
+                <select name="estado" id="estado" class="form-control w-50">
                     <option value="no entregado">no entregado</option>
                     <option value="entregado">entregado</option>
-                </select></label><br>
-            <label><select name="metPago" id="metPago">
-                <option value="contado">Contado</option>
-                <option value="transferencia">Transferencia</option>
-            </select></label><br>
-            <label><input type="date" name="fecha" id="fecha" value="<%=pedido.fecha%>" ></label><br>           
-            <label><button class="btn btn-primary">enviar</button></label><br>
-            <div id="agregaProd" >
-            <% for (i=0 ; i < pedido.producto.length ; i++) {%>
-                <label><select name="producto" id="producto">
-                    <% for(j=0;j < producto.length;j++){%>
-                        <option value="<%=producto[j].nombre%>"> <%=producto[j].nombre%></option>
-                        <%} %>
-                </select></label>
-                <label><input type="number" name="cantidad" id="cantidad" value="<%=pedido.cantidad[i]%>"></label>
-                
-                <% if(i==0){%> 
-                    <label><input type="button" id="btn-ped" value="más producto"></label>
-                   <%} %>
-                   <br>
-                <%} %> 
-            </div>  
+                </select>
+            </div>
+            <div class="form-group ml-2">
+                <label for="metPago">Metodo pago</label>
+                <select name="metPago" id="metPago" class="form-control w-50">
+                    <option value="contado">Contado</option>
+                    <option value="transferencia">Transferencia</option>
+                    <option value="transBank">TransBank</option>
+                </select>
+            </div>
+            <div class="form-group ml-2">
+                <label for="fecha">Fecha</label>
+                <input type="date" name="fecha" id="fecha" value="<%=pedido.fecha%>" class="form-control w-50" required>
+            </div>
+            <div class="form-group ml-2">    
+                <label><button class="btn btn-primary">enviar</button></label>
+            </div>
+            <hr>
+            <div id="agregaProd">
+                <div class="form-group ml-2">
+                    <label for="producto">Producto</label>
+                    <select name="producto" id="producto" class="form-control w-50">
+                        <% for(i=0;i < producto.length;i++){%>
+                            <option value="<%=producto[i].nombre%>"> <%=producto[i].nombre%></option>
+                            <%} %>
+                        <% for(i=0;i < pack.length;i++){%>
+                            <option value="<%=pack[i].nombre%>"> <%=pack[i].nombre%></option>
+                            <%} %>
+                    </select>
+                </div>
+                <div class="form-group ml-2">
+                    <label for="cantidad">Cantidad</label>
+                    <input type="number" name="cantidad" id="cantidad" placeholder="cantidad" class="form-control w-50" required>
+                </div>
+                <div class="form-group ml-2">
+                    <label><input type="button" id="btn-ped" value="más producto" class="form-control"></label>
+                </div>
+            </div>
         </form>
     </center>
     </div>

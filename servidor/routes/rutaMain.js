@@ -11,6 +11,7 @@ const funPedidos=require('../funciones/fPedidos');
 const _ = require('lodash');
 const passport=require('passport');
 const {adminAuthenticated}=require('../funciones/auth');
+const {vendAuthenticated}=require('../funciones/auth');
 
 router.get('/',(req,res)=>{
     res.render('index');
@@ -35,11 +36,11 @@ router.post('/',passport.authenticate(['adminLocal','vendLocal'],
 router.get('/logout',(req,res)=>{
     req.logout();
     res.redirect('/')
-})
+});
 //-------------
 router.get('/funciones',adminAuthenticated,(req,res)=>{
     res.render('otrasRutas/funciones');
-})
+});
 router.get('/funciones/pedNuevo',adminAuthenticated,(req,res)=>{
     modeloProductos.find({},(err,productos)=>{
         if (err){
@@ -56,14 +57,16 @@ router.get('/funciones/pedNuevo',adminAuthenticated,(req,res)=>{
                         producto:productos,
                         vendedor:vendedor,
                         cliente:clientes,
-                        pack:pack
+                        pack:pack,
+                        redic:"/funciones/menuColeccion",
+                        bool:true
                     })
                 })
                 }
                 }
             );
     }})    
-})
+});
 router.get('/funciones/menuColeccion',adminAuthenticated,(req,res)=>{
     res.render('otrasRutas/colleciones/collecion');
 });
@@ -74,9 +77,11 @@ router.get('/funciones/listaCliente/',adminAuthenticated,(req,res)=>{
         if (err) throw err;
         var fecha=[]
         for(i=0;i < clientes.length;i++){
-            fecha[i]=String(clientes[i].fechaNac.getDate())+"/"+
-            String(clientes[i].fechaNac.getMonth()+1)+"/"+
-            String(clientes[i].fechaNac.getFullYear());
+            if (clientes[i].fechaNac!=null){
+                fecha[i]=String(clientes[i].fechaNac.getDate())+"/"+
+                String(clientes[i].fechaNac.getMonth()+1)+"/"+
+                String(clientes[i].fechaNac.getFullYear());
+            }
         }
         res.render('otrasRutas/colleciones/clientes/listado',{
             cliente:clientes,
@@ -86,17 +91,33 @@ router.get('/funciones/listaCliente/',adminAuthenticated,(req,res)=>{
 });
 router.post('/funciones/listaCliente/',adminAuthenticated,(req,res)=>{
     busq=req.body.nombre;
-
     modeloCliente.find({nombre:{$regex:`^${busq}`,$options:"i"}},(err, clientes)=>{
         if (err) throw err;
+        var fecha=[]
+    for(i=0;i < clientes.length;i++){
+        if (clientes[i].fechaNac!=null){
+            fecha[i]=String(clientes[i].fechaNac.getDate())+"/"+
+            String(clientes[i].fechaNac.getMonth()+1)+"/"+
+            String(clientes[i].fechaNac.getFullYear());
+        }
+    }
         res.render('otrasRutas/colleciones/clientes/listado',{
-            cliente:clientes
+            cliente:clientes,
+            fecha:fecha
     });
 });
 
 });
-router.get('/funciones/crearCliente',adminAuthenticated,(req,res)=>{
-    res.render('otrasRutas/colleciones/clientes/crearCliente');
+router.get('/funciones/crearCliente/',vendAuthenticated,(req,res)=>{
+    var redic;
+    if (req.user.tipo=="ADMIN"){
+        redic="/funciones/menuColeccion";
+    }else{
+        redic='/vendedor/index';
+    }
+    res.render('otrasRutas/colleciones/clientes/crearCliente',{
+        redic:redic
+    });
 });
 router.get('/funciones/modifCliente/:id',adminAuthenticated,(req,res)=>{
     modeloCliente.findById(req.params.id,(err, cliente)=>{
@@ -180,7 +201,7 @@ router.get('/funciones/modifProducto/:id',adminAuthenticated,(req,res)=>{
 });
 });
 //---------------------PACK-------------------------------
-router.get('/funciones/crearPack', async (req,res)=>{
+router.get('/funciones/crearPack',adminAuthenticated, async (req,res)=>{
     const listIns=await modeloInsumos.find();
     const listProd= await modeloProductos.find();
     res.render('otrasRutas/colleciones/pack/nuevoPack',{
@@ -189,7 +210,7 @@ router.get('/funciones/crearPack', async (req,res)=>{
     })
 });
 
-router.get('/funciones/listaPack',(req,res)=>{
+router.get('/funciones/listaPack',adminAuthenticated,(req,res)=>{
     modeloPack.find({},(err, pack)=>{
         if (err) throw err;
         res.render('otrasRutas/colleciones/pack/listaPack',{
@@ -220,6 +241,33 @@ router.get('/funciones/modifInsumo/:id',adminAuthenticated,(req,res)=>{
 });
 });
 //---------------------PEDIDOS----------------------
+router.get('/funciones/pedNuevo/:id',adminAuthenticated,(req,res)=>{
+    const {id}=req.params;
+    modeloProductos.find({},(err,productos)=>{
+        if (err){
+            throw err;
+        }else{
+            modeloVendedor.find({},(err,vendedor)=>{
+                if(err){
+                    throw err;
+                }else{
+                    modeloCliente.find({_id:id}, async (err,clientes)=>{
+                        pack=await modeloPack.find();
+                        if(err) throw err;
+                        res.render('otrasRutas/pedidoNuevo/pedNuevo',{
+                        producto:productos,
+                        vendedor:vendedor,
+                        cliente:clientes,
+                        pack:pack,
+                        redic:"/funciones/listaCliente",
+                        bool:false
+                    })
+                })
+                }
+                }
+            );
+    }})    
+});
 router.get('/funciones/listaPedido',adminAuthenticated,(req,res)=>{
     var fechaHoy= new Date();
     var fechaIn=new Date(fechaHoy.getFullYear(),fechaHoy.getMonth(),fechaHoy.getDate()-1

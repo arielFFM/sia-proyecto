@@ -9,11 +9,11 @@
 <body>
     <div>
         <h1>Visualizar cliente</h1>
-        <h3 aligne="right"><a href="/funciones/menuColeccion">volver</a></h3>
+        <h3 aligne="right"><a href="/vendedor/index">volver</a></h3>
     </div>
     <Div>
         <center>
-        <form action="/funciones/listaCliente/" method="POST">
+        <form action="/vendedor/listaCliente/" method="POST">
             <div class="form-group ml-2">
                 <label for="nombre">ingrese nombre</label>
                 <input type="text" name="nombre" id="nombre" placeholder="nombre" class="form-control w-50"> 
@@ -34,15 +34,8 @@
                             <th>comuna</th>
                             <th>calle</th>
                             <th>casa</th>
-                            <th>fecha nac</th>
                             <th>telefono</th>
-                            <th>rut</th>
-                            <th>bidones</th>
-                            <th>correo</th>
-                            <th>tipo</th>
                             <th>Agreg Ped</th>
-                            <th>eliminar</th>
-                            <th>modificar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,18 +45,10 @@
                                 <td><%= cliente[i].comuna %></td>
                                 <td><%= cliente[i].calle %></td>
                                 <td><%= cliente[i].nCasa %></td>
-                                <td><%= fecha[i] %></td>
                                 <td><%= cliente[i].telefono %></td>
-                                <td><%= cliente[i].rut %></td>
-                                <td><%= cliente[i].bidones %></td>
-                                <td><%= cliente[i].correo %></td>
-                                <td><%= cliente[i].tipo %></td>
-                                <td><a href='/funciones/pedNuevo/<%=cliente[i]._id%>'>Nuevo Ped</a></td>
-                                <td><a href="/api/clientes/delete/<%=cliente[i]._id%>"> eliminar </a></td>
-                                <td> <a href="/funciones/modifCliente/<%=cliente[i]._id%>"> modificar </a></td>
+                                <td><a class="btn btn-primary" href='/vendedor/pedNuevo/<%=cliente[i]._id%>'>Nuevo Ped</a></td>
                             </tr>
                         <%} %>
-                        
                     </tbody>
                 </table>
             </center>

@@ -15,20 +15,52 @@
     <div>
         <div>
             <form action="/api/clientes/put/<%=cliente._id %>" name="formularia" method="POST">
-                <label><input type="text" name="nombre" id="nombre" value="<%=cliente.nombre %>"></label><br>
-                <label><input type="text" name="comuna" id="comuna" value="<%=cliente.comuna %>"></label><br>
-                <label><input type="text" name="calle" id="calle" value="<%=cliente.calle %>"></label><br>
-                <label><input type="number" name="nCasa" id="nCasa" value="<%=cliente.nCasa %>"></label><br>
-                <label><input type="date" name="fechaNac" id="fechaNac" value="<%=cliente.fechaNac %>"></label><br>
-                <label><input type="number" name="telefono" id="telefono" value="<%=cliente.telefono %>" ></label><br>
-                <label><input type="number" name="rut" id="rut" value="<%=cliente.rut %>"></label><br>
-                <label><input type="number" name="bidones" id="bidones" value="<%=cliente.bidones %>"></label><br>
-                <label><input type="email" name="correo" id="correo" value="<%=cliente.correo %>"></label><br>
-                <label><select name="tipoCliente" id="tipoCliente">
-                    <option value="domiciliario">domiciliario</option>
-                    <option value="empresa">empresa</option>
-                </select></label><br>
-                <label><button class="btn btn-primary">enviar</button></label>
+                <div class="form-group ml-2">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre" value="<%=cliente.nombre%>" class="form-control w-50"> 
+                </div>
+                <div class="form-group ml-2">
+                    <label for="comuna">Comuna</label>
+                    <input type="text" name="comuna" id="comuna" value="<%=cliente.comuna%>" class="form-control w-50" required>
+                </div>
+                <div class="form-group ml-2">
+                    <label for="calle">Calle</label>
+                    <input type="text" name="calle" id="calle" value="<%=cliente.calle%>" class="form-control w-50" required>
+                </div>
+                <div class="form-group ml-2">
+                    <label for="nCasa">N° Casa</label>
+                    <input type="number" name="nCasa" id="nCasa" value="<%=cliente.nCasa%>" class="form-control w-50" required>
+                </div>
+                <div class="form-group ml-2">
+                    <label for="fechaNac">Fecha nac</label>
+                    <input type="date" name="fechaNac" id="fechaNac" value="<%=cliente.fechaNac%>" class="form-control w-50">
+                </div>
+                <div class="form-group ml-2">
+                    <label for="telefono">N° teléfono</label>
+                    <input type="number" name="telefono" id="telefono" value="<%=cliente.telefono%>" class="form-control w-50">
+                </div>
+                <div class="form-group ml-2">
+                    <label for="rut">RUT</label>
+                    <input type="number" name="rut" id="rut" value="<%=cliente.rut%>" class="form-control w-50">
+                </div>
+                <div class="form-group ml-2">
+                    <label for="bidones">bidones</label>
+                    <input type="number" name="bidones" id="bidones" value="<%=cliente.bidones%>" class="form-control w-50">
+                </div>
+                <div class="form-group ml-2">
+                    <label for="correo">Correo</label>
+                    <input type="email" name="correo" id="correo" value="<%=cliente.correo%>" class="form-control w-50">
+                </div>
+                <div class="form-group ml-2">
+                    <label for="tipoCliente">Tipo</label>
+                    <select name="tipoCliente" id="tipoCliente" class="form-control w-50">
+                        <option value="domiciliario">domiciliario</option>
+                        <option value="empresa">empresa</option>
+                </select>
+                </div>
+                <div class="form-group ml-2">
+                    <button class="btn btn-primary">enviar</button>
+                </div>
             </form>
         </div>
     </div>
