@@ -19,12 +19,12 @@ router.get('/pedNoEntregados',vendAuthenticated, async (req,res)=>{
     var fechaTer=new Date(fechaHoy.getFullYear(),fechaHoy.getMonth(),fechaHoy.getDate()
         ,23,59,59);
     lPedidos=await modeloPedidos.aggregate([
-        {$match:{fecha:{lte:fechaTer,gte:fechaIn}}},
+        /*{$match:{fecha:{lte:fechaTer,gte:fechaIn}}},*/
         {$match:{vendedor:req.user.username}
         },
         {$match:{estado:"no entregado"}
         }
-    ])   //debe hacer match con fecha, no entregado y user
+    ]) 
     title="Pedidos no entregados"
     res.render('intVend/listaPedido',{
         pedido:lPedidos,
@@ -38,24 +38,25 @@ router.get('/pedEntregados',vendAuthenticated, async (req,res)=>{
     var fechaTer=new Date(fechaHoy.getFullYear(),fechaHoy.getMonth(),fechaHoy.getDate()
         ,23,59,59);
     lPedidos=await modeloPedidos.aggregate([
-        {$match:{fecha:{lte:fechaTer,gte:fechaIn}}},
-        {$match:{vendedor:req.user.username}
-        },
+        {$match:{fecha:{$gte:fechaIn}}},
+        {$match:{fecha:{$lte:fechaTer}}},
+        {$match:{vendedor:req.user.username}},
         {$match:{estado:"entregado"}
         }
-    ])   //debe hacer match con fecha, no entregado y user 
+    ]);
     title="Pedidos entregados"
     res.render('intVend/pedEntre',{
         pedido:lPedidos,
         title:title
     });
 });
+
+
 router.get('/listaCliente',vendAuthenticated,(req,res)=>{
     modeloCliente.find({},(err, clientes)=>{
         if (err) throw err;
         res.render('intVend/listaClien',{
-            cliente:clientes,
-            fecha:fecha
+            cliente:clientes
     });
 });
 });
@@ -65,8 +66,7 @@ router.post('/listaCliente',vendAuthenticated,(req,res)=>{
     modeloCliente.find({nombre:{$regex:`^${busq}`,$options:"i"}},(err, clientes)=>{
         if (err) throw err;
         res.render('intVend/listaClien',{
-            cliente:clientes,
-            fecha:fecha
+            cliente:clientes
     });
 });
 });

@@ -12,7 +12,7 @@ clienCtrl.createCliente= async (req, res) =>{
     const nCliente=new cliente(req.body);
     await nCliente.save();
     if (req.user.tipo=="ADMIN"){
-        res.redirect('/funciones/listaPedido')
+        res.redirect('/funciones/listaCliente')
     }else{
         res.redirect('/vendedor/pedNoEntregados')
     }
