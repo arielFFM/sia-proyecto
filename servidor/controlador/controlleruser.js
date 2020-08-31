@@ -10,7 +10,8 @@ userCtrl.getUser= async (req,res)=>{
 
 userCtrl.createUser= async (req, res) =>{
     const nUser=new user(req.body);
-    nUser.password=await nUser.encryptPassword(req.body.password)
+    //nUser.password=await nUser.encryptPassword(req.body.password)//
+    console.log(req.body.password)
     console.log(nUser);
     await nUser.save();
     res.redirect('/funciones/listaUser');
